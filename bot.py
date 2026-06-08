@@ -29,7 +29,7 @@ CANAL_ID = os.getenv("CANAL_ID", "")          # opcional: ID do canal para envio
 HORA_ENVIO_AUTO = time(hour=9, minute=0)       # hora do envio automático diário (09:00)
 
 genai.configure(api_key=GEMINI_API_KEY)
-model_gemini = genai.GenerativeModel("gemini-2.0-flash")
+model_gemini = genai.GenerativeModel("gemini-1.5-flash")
 
 logging.basicConfig(
     format="%(asctime)s | %(levelname)s | %(message)s",
@@ -105,9 +105,13 @@ Responde APENAS com JSON válido, sem texto, sem markdown. Formato:
 Usa odds realistas entre 1.20 e 4.50. Confiança entre 45 e 92. Texto em Português de Moçambique."""
 
     log.info(f"Gerando palpites — liga={liga_id} desporto={desporto}")
-    response = model_gemini.generate_content(prompt)
-    raw = response.text.strip().replace("```json", "").replace("```", "").strip()
-    return json.loads(raw)
+    try:
+        response = model_gemini.generate_content(prompt)
+        raw = response.text.strip().replace("```json", "").replace("```", "").strip()
+        return json.loads(raw)
+    except Exception as e:
+        log.error(f"Erro Gemini: {type(e).__name__}: {e}")
+        raise
 
 
 # ─────────────────────────────────────────────
