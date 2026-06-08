@@ -23,7 +23,7 @@ from telegram.ext import (
 # ─────────────────────────────────────────────
 # CONFIGURAÇÃO
 # ─────────────────────────────────────────────
-TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN", "8974398857:AAGCFL-6sZ3SvWtHOIZ2QqlZ0XmRPdN8p-w")
+TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN", "8974398857:AAHYDMCxjBu6T-ZaVakSbUPbfNOy9C0FmKI")
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "AQ.Ab8RN6LNxHFIkS_ArRI4_POyDQlYJnsOOu9CwHqy0Y48smvi7w")
 CANAL_ID = os.getenv("CANAL_ID", "")          # opcional: ID do canal para envio automático
 HORA_ENVIO_AUTO = time(hour=9, minute=0)       # hora do envio automático diário (09:00)
